@@ -52,14 +52,15 @@ class CardView: UIView {
     }
     
     fileprivate func handleEndedCase(_ gesture: UIPanGestureRecognizer) {
-        let shouldDismissCard = gesture.translation(in: nil).x > threshold
+        let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
+        let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
         
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseOut) {
             
             if shouldDismissCard {
-                self.frame = CGRect(x: 1000, y: 0, width: self.frame.width, height: self.frame.height)
-//                let offScreenTransorm = self.transform.translatedBy(x: 1000, y: 0)
-//                self.transform = offScreenTransorm
+              //  self.frame = CGRect(x: 1000 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
+                let offScreenTransorm = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
+                self.transform = offScreenTransorm
             } else {
                 self.transform = .identity
             }
