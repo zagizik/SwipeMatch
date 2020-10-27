@@ -19,6 +19,8 @@
 		115359C82545B2620075EB62 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359C72545B2620075EB62 /* TopNavigationStackView.swift */; };
 		115359CC2545BCCF0075EB62 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359CB2545BCCF0075EB62 /* CardView.swift */; };
 		11552AD025473F4A001916DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552ACF25473F4A001916DD /* User.swift */; };
+		11552AD725474CB3001916DD /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552AD625474CB3001916DD /* CardViewModel.swift */; };
+		11552ADB2547556F001916DD /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552ADA2547556F001916DD /* Advertiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		115359C72545B2620075EB62 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		115359CB2545BCCF0075EB62 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		11552ACF25473F4A001916DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		11552AD625474CB3001916DD /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		11552ADA2547556F001916DD /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		1153599D25459F880075EB62 /* SwipeMatch */ = {
 			isa = PBXGroup;
 			children = (
+				11552AD525474C98001916DD /* ViewModels */,
 				11552ACE25473F38001916DD /* Model */,
 				115359C12545AD8B0075EB62 /* Views */,
 				11552AD325474C33001916DD /* Controllers */,
@@ -105,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				11552ACF25473F4A001916DD /* User.swift */,
+				11552ADA2547556F001916DD /* Advertiser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +121,14 @@
 				115359A225459F880075EB62 /* HomeController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		11552AD525474C98001916DD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				11552AD625474CB3001916DD /* CardViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,8 +203,10 @@
 			files = (
 				115359BD2545AB8E0075EB62 /* Extensions+UIView.swift in Sources */,
 				115359C32545ADD90075EB62 /* HomeBottomControlsStackView.swift in Sources */,
+				11552ADB2547556F001916DD /* Advertiser.swift in Sources */,
 				115359C82545B2620075EB62 /* TopNavigationStackView.swift in Sources */,
 				115359B82545A2D80075EB62 /* Firebase+Utils.swift in Sources */,
+				11552AD725474CB3001916DD /* CardViewModel.swift in Sources */,
 				115359A325459F880075EB62 /* HomeController.swift in Sources */,
 				11552AD025473F4A001916DD /* User.swift in Sources */,
 				1153599F25459F880075EB62 /* AppDelegate.swift in Sources */,
