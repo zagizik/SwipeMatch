@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,8 @@
 		11A7AF212548AC18007C6D2C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AF202548AC18007C6D2C /* RegistrationController.swift */; };
 		11A7AF252548B860007C6D2C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AF242548B860007C6D2C /* CustomTextField.swift */; };
 		11DB21C32549F21B00ADEF3E /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */; };
+		11DB21DF254A01BC00ADEF3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11DB21DE254A01BC00ADEF3E /* GoogleService-Info.plist */; };
+		89F4B069B153240DF6B813A5 /* Pods_SwipeMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB955CAB02D19CEDD13A5EE0 /* Pods_SwipeMatch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		11A7AF202548AC18007C6D2C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		11A7AF242548B860007C6D2C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		11DB21DE254A01BC00ADEF3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13D22F0B6E82E46B670FEA2B /* Pods-SwipeMatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatch.debug.xcconfig"; path = "Target Support Files/Pods-SwipeMatch/Pods-SwipeMatch.debug.xcconfig"; sourceTree = "<group>"; };
+		4F3FA16BE06CF1D1CBC0B036 /* Pods-SwipeMatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatch.release.xcconfig"; path = "Target Support Files/Pods-SwipeMatch/Pods-SwipeMatch.release.xcconfig"; sourceTree = "<group>"; };
+		CB955CAB02D19CEDD13A5EE0 /* Pods_SwipeMatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeMatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +57,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F4B069B153240DF6B813A5 /* Pods_SwipeMatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E128C00FE9C58ADD9901546 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB955CAB02D19CEDD13A5EE0 /* Pods_SwipeMatch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1153599225459F880075EB62 = {
 			isa = PBXGroup;
 			children = (
 				1153599D25459F880075EB62 /* SwipeMatch */,
 				1153599C25459F880075EB62 /* Products */,
+				FE9904B122D980EC575BF34D /* Pods */,
+				0E128C00FE9C58ADD9901546 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +103,7 @@
 				115359A725459F8A0075EB62 /* Assets.xcassets */,
 				115359A925459F8A0075EB62 /* LaunchScreen.storyboard */,
 				115359AC25459F8A0075EB62 /* Info.plist */,
+				11DB21DE254A01BC00ADEF3E /* GoogleService-Info.plist */,
 			);
 			path = SwipeMatch;
 			sourceTree = "<group>";
@@ -137,6 +155,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		FE9904B122D980EC575BF34D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13D22F0B6E82E46B670FEA2B /* Pods-SwipeMatch.debug.xcconfig */,
+				4F3FA16BE06CF1D1CBC0B036 /* Pods-SwipeMatch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 115359AF25459F8A0075EB62 /* Build configuration list for PBXNativeTarget "SwipeMatch" */;
 			buildPhases = (
+				B1C70B97F05177FCF4525B64 /* [CP] Check Pods Manifest.lock */,
 				1153599725459F880075EB62 /* Sources */,
 				1153599825459F880075EB62 /* Frameworks */,
 				1153599925459F880075EB62 /* Resources */,
+				985CF5CB794270B46B850C7A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,11 +225,54 @@
 			files = (
 				115359AB25459F8A0075EB62 /* LaunchScreen.storyboard in Resources */,
 				115359A825459F8A0075EB62 /* Assets.xcassets in Resources */,
+				11DB21DF254A01BC00ADEF3E /* GoogleService-Info.plist in Resources */,
 				115359A625459F880075EB62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		985CF5CB794270B46B850C7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwipeMatch/Pods-SwipeMatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwipeMatch/Pods-SwipeMatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwipeMatch/Pods-SwipeMatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1C70B97F05177FCF4525B64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwipeMatch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1153599725459F880075EB62 /* Sources */ = {
@@ -363,6 +435,7 @@
 		};
 		115359B025459F8A0075EB62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13D22F0B6E82E46B670FEA2B /* Pods-SwipeMatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -383,6 +456,7 @@
 		};
 		115359B125459F8A0075EB62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F3FA16BE06CF1D1CBC0B036 /* Pods-SwipeMatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
