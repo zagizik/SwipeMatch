@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1153599F25459F880075EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153599E25459F880075EB62 /* AppDelegate.swift */; };
-		115359A125459F880075EB62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359A025459F880075EB62 /* SceneDelegate.swift */; };
 		115359A325459F880075EB62 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359A225459F880075EB62 /* HomeController.swift */; };
 		115359A625459F880075EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115359A425459F880075EB62 /* Main.storyboard */; };
 		115359A825459F8A0075EB62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115359A725459F8A0075EB62 /* Assets.xcassets */; };
@@ -21,12 +20,14 @@
 		11552AD025473F4A001916DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552ACF25473F4A001916DD /* User.swift */; };
 		11552AD725474CB3001916DD /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552AD625474CB3001916DD /* CardViewModel.swift */; };
 		11552ADB2547556F001916DD /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11552ADA2547556F001916DD /* Advertiser.swift */; };
+		11A7AF212548AC18007C6D2C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AF202548AC18007C6D2C /* RegistrationController.swift */; };
+		11A7AF252548B860007C6D2C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7AF242548B860007C6D2C /* CustomTextField.swift */; };
+		11DB21C32549F21B00ADEF3E /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1153599B25459F880075EB62 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1153599E25459F880075EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		115359A025459F880075EB62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		115359A225459F880075EB62 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		115359A525459F880075EB62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		115359A725459F8A0075EB62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +41,9 @@
 		11552ACF25473F4A001916DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11552AD625474CB3001916DD /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		11552ADA2547556F001916DD /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		11A7AF202548AC18007C6D2C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		11A7AF242548B860007C6D2C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +82,6 @@
 				11552AD325474C33001916DD /* Controllers */,
 				115359B42545A1920075EB62 /* Extensions */,
 				1153599E25459F880075EB62 /* AppDelegate.swift */,
-				115359A025459F880075EB62 /* SceneDelegate.swift */,
 				115359A425459F880075EB62 /* Main.storyboard */,
 				115359A725459F8A0075EB62 /* Assets.xcassets */,
 				115359A925459F8A0075EB62 /* LaunchScreen.storyboard */,
@@ -102,6 +105,7 @@
 				115359C22545ADD90075EB62 /* HomeBottomControlsStackView.swift */,
 				115359C72545B2620075EB62 /* TopNavigationStackView.swift */,
 				115359CB2545BCCF0075EB62 /* CardView.swift */,
+				11A7AF242548B860007C6D2C /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				115359A225459F880075EB62 /* HomeController.swift */,
+				11A7AF202548AC18007C6D2C /* RegistrationController.swift */,
+				11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -209,9 +215,11 @@
 				11552AD725474CB3001916DD /* CardViewModel.swift in Sources */,
 				115359A325459F880075EB62 /* HomeController.swift in Sources */,
 				11552AD025473F4A001916DD /* User.swift in Sources */,
+				11A7AF252548B860007C6D2C /* CustomTextField.swift in Sources */,
+				11DB21C32549F21B00ADEF3E /* RegistrationViewModel.swift in Sources */,
 				1153599F25459F880075EB62 /* AppDelegate.swift in Sources */,
 				115359CC2545BCCF0075EB62 /* CardView.swift in Sources */,
-				115359A125459F880075EB62 /* SceneDelegate.swift in Sources */,
+				11A7AF212548AC18007C6D2C /* RegistrationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

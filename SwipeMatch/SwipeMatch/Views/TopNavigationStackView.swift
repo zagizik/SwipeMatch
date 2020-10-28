@@ -8,6 +8,10 @@
 import UIKit
 
 class TopNavigationStackView: UIStackView {
+    
+    let settingsButton = UIButton(type: .system)
+    let messageButton = UIButton(type: .system)
+    let fireImageView = UIImageView(image: #imageLiteral(resourceName: "app_icon"))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -15,13 +19,12 @@ class TopNavigationStackView: UIStackView {
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
-        let subViews = [#imageLiteral(resourceName: "top_left_profile"), #imageLiteral(resourceName: "app_icon"), #imageLiteral(resourceName: "top_right_messages")].map { (image) -> UIView in
-            let button = UIButton(type: .system)
-            button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-            return button
-        }
+        fireImageView.contentMode = .scaleAspectFit
         
-        subViews.forEach { (v) in
+        settingsButton.setImage(#imageLiteral(resourceName: "top_left_profile").withRenderingMode(.alwaysOriginal), for: .normal)
+        messageButton.setImage(#imageLiteral(resourceName: "top_right_messages").withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        [settingsButton, UIView(), fireImageView, UIView(), messageButton].forEach { (v) in
             addArrangedSubview(v)
         }
     }

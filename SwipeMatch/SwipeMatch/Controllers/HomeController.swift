@@ -26,22 +26,21 @@ class HomeController: UIViewController {
         let viewModels = producers.map { return $0.toCardViewModel()}
         return viewModels
     }()
-
-//    let cardViewModels = ([
-//        Advertiser(title: "Promt", brandName: "PromtHub", posterPhotoName: "slide_out_menu_poster"),
-//        User(name: "Ladyone", age: 21, profession: "Whore", imageName: "jane1"),
-//        User(name: "Ladytwo", age: 22, profession: "Whoore", imageName: "kelly1"),
-//        User(name: "Ladythree", age: 23, profession: "Whooore", imageName: "lady5c"),
-//        Advertiser(title: "Promt", brandName: "PromtHub", posterPhotoName: "slide_out_menu_poster")
-//    ] as [ProducesCardViewModel]).map { (producer) -> CardViewModel in
-//        return producer.toCardViewModel()
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         setupLayout()
         setupDummyCards()
     }
+    
+    @objc func handleSettings() {
+        print("peee pee poopoo")
+        let registrationController = RegistrationController()
+        present(registrationController, animated: true)
+    }
+    
     
     // MARK:- Fileprivate
     
@@ -49,10 +48,6 @@ class HomeController: UIViewController {
         cardViewModels.forEach { (cvm) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = cvm
-            
-//            cardView.imageView.image = UIImage(named: cvm.imageName)
-//            cardView.informationLabel.attributedText = cvm.attributedString
-//            cardView.informationLabel.textAlignment = cvm.textAligment
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
