@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1144DDC7254B33F700E34515 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1144DDC6254B33F700E34515 /* Bindable.swift */; };
 		1153599F25459F880075EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153599E25459F880075EB62 /* AppDelegate.swift */; };
 		115359A325459F880075EB62 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359A225459F880075EB62 /* HomeController.swift */; };
 		115359A625459F880075EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115359A425459F880075EB62 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1144DDC6254B33F700E34515 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		1153599B25459F880075EB62 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1153599E25459F880075EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		115359A225459F880075EB62 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				115359A225459F880075EB62 /* HomeController.swift */,
 				11A7AF202548AC18007C6D2C /* RegistrationController.swift */,
+				1144DDC6254B33F700E34515 /* Bindable.swift */,
 				11DB21C22549F21B00ADEF3E /* RegistrationViewModel.swift */,
 			);
 			path = Controllers;
@@ -287,6 +290,7 @@
 				11552AD725474CB3001916DD /* CardViewModel.swift in Sources */,
 				115359A325459F880075EB62 /* HomeController.swift in Sources */,
 				11552AD025473F4A001916DD /* User.swift in Sources */,
+				1144DDC7254B33F700E34515 /* Bindable.swift in Sources */,
 				11A7AF252548B860007C6D2C /* CustomTextField.swift in Sources */,
 				11DB21C32549F21B00ADEF3E /* RegistrationViewModel.swift in Sources */,
 				1153599F25459F880075EB62 /* AppDelegate.swift in Sources */,

@@ -25,13 +25,25 @@ class RegistrationViewModel {
         }
     }
     
+//    var image: UIImage? {
+//        didSet {
+//            imageObserver?(image)
+//        }
+//    }
+
+    
+    
+    
     fileprivate func checkFormValidity() {
         let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false
-        isFormValidObserver?(isFormValid)
+        bindableIsFormValid.value = isFormValid
+//        isFormValidObserver?(isFormValid)
     }
 
     
     //reactive shiiieeeeet
-    
-    var isFormValidObserver: ((Bool) -> ())?
+    var bindableImage = Bindable<UIImage>()
+    var bindableIsFormValid = Bindable<Bool>()
+//    var isFormValidObserver: ((Bool) -> ())?
+//    var imageObserver: ((UIImage?) -> ())?
 }
