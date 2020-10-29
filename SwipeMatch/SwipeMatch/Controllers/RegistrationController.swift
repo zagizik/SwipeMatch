@@ -167,8 +167,15 @@ class RegistrationController: UIViewController {
         
         registrationViewModel.bindableImage.bind { [unowned self] (img) in
                     self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
-
                 }
+        registrationViewModel.bindableIsRegistering.bind { [unowned self] (isRegistring) in
+            if isRegistring == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
+        }
         
 //        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
 //            self.registerButton.isEnabled = isFormValid
@@ -187,18 +194,16 @@ class RegistrationController: UIViewController {
 //        }
     }
     
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
     @objc fileprivate func handleRegister() {
         handleKeyboardDissmiss()
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
+        registrationViewModel.performRegistration { [unowned self] (err) in
             if let err = err {
-                print(err)
-                self.showHUDWithError(error: err)
+                showHUDWithError(error: err)
                 return
             }
-            
-            print("Successfully registred User:", res?.user.uid ?? "")
+            print("finished registring user")
         }
     }
     
@@ -209,6 +214,7 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func showHUDWithError(error: Error) {
+        registeringHUD.dismiss(animated: true)
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed registration"
         hud.detailTextLabel.text = error.localizedDescription
