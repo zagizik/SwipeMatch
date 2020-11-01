@@ -6,17 +6,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
     
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "photo_placeholder"))
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     var cardViewModel: CardViewModel! {
         didSet {
-#warning("Application crashes if user don't have photos")
             let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+            if let url = URL(string: imageName) {
+                imageView.sd_setImage(with: url)
+            }
+            
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAligment
             
@@ -32,8 +35,9 @@ class CardView: UIView {
     }
     
     fileprivate func setupImageIndexObserver() {
-        cardViewModel.imageIndexObserver = { [weak self ](indx, image) in
-            self?.imageView.image = image
+        cardViewModel.imageIndexObserver = { [weak self ](indx, imageUrl) in
+            let url = URL(string: imageUrl ?? "")
+            self?.imageView.sd_setImage(with: url)
             self?.barsStackView.arrangedSubviews.forEach({ (v) in
                 v.backgroundColor = self?.barDeselectedColor
             })

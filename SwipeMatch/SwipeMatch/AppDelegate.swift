@@ -20,7 +20,7 @@ import Firebase
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = RegistrationController()
+        window?.rootViewController = HomeController()
         
         return true
     }

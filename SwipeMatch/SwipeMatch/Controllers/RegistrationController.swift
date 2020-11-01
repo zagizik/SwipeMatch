@@ -84,6 +84,8 @@ class RegistrationController: UIViewController {
         setupTapGesture()
         
         setupRegistrationViewModelObserver()
+        
+        
     }
     
     //MARK:- fileprivate
