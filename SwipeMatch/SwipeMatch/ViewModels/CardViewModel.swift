@@ -15,12 +15,12 @@ protocol ProducesCardViewModel {
 class CardViewModel {
     let imageNames: [String]
     let attributedString : NSAttributedString
-    let textAligment: NSTextAlignment
+    let textAlignment: NSTextAlignment
     
     init(imageNames: [String], attributedString : NSAttributedString, textAligment: NSTextAlignment){
         self.imageNames = imageNames
         self.attributedString = attributedString
-        self.textAligment = textAligment
+        self.textAlignment = textAligment
     }
     
     fileprivate var imageIndex = 0 {

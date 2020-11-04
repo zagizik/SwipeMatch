@@ -9,42 +9,74 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate {
 
     let topStackView = TopNavigationStackView()
-    let bottomControls = HomeBottomControlsStackView()
     let cardsDeckView = UIView()
+    let bottomControls = HomeBottomControlsStackView()
     var cardViewModels = [CardViewModel]()
+    
+    fileprivate let hud = JGProgressHUD(style: .dark)
+    fileprivate var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        topStackView.messageButton.addTarget(self, action: #selector(handleMassege), for: .touchUpInside)
         setupLayout()
         setupFirestoreUserCards()
         fetchUsersFromFirestore()
+        fetchCurrentUser()
     }
     
-    @objc func handleSettings() {
-        print("peee pee poopoo")
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegistrationController()
+            let navController = UINavigationController(rootViewController: registrationController)
+            if #available(iOS 13.0, *) {
+                navController.isModalInPresentation = true
+            }
+
+            present(navController, animated: true)
+        }
     }
     
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
+    }
+    
+    func didSaveSettings() {
+        print("notified from dissmisal home controller")
+        fetchCurrentUser()
+    }
+    
+    fileprivate func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch user:", err)
+                return
+            }
+        
+        guard let  dicionary = snapshot?.data() else { return }
+        self.user = User(dictionary: dicionary)
+            self.fetchUsersFromFirestore()
+        }
+    }
     
     // MARK:- UI set up
 
     fileprivate func setupLayout() {
         view.backgroundColor = .white
-        let overallStackView = UIStackView( arrangedSubviews: [topStackView, cardsDeckView, bottomControls])
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomControls])
         overallStackView.axis = .vertical
         view.addSubview(overallStackView)
-        overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                                leading: view.safeAreaLayoutGuide.leadingAnchor,
-                                bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overallStackView.isLayoutMarginsRelativeArrangement = true
         overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
+        
         overallStackView.bringSubviewToFront(cardsDeckView)
     }
     // MARK:- buttons targets
@@ -54,22 +86,32 @@ class HomeController: UIViewController {
     }
     
     
+    @objc fileprivate func handleMassege() {
+        let messageController = RegistrationController()
+        present(messageController, animated: true)
+    }
+    
+    @objc func handleSettings() {
+        let settingsController = SettingsController()
+        settingsController.delegate = self
+        let navController = UINavigationController(rootViewController: settingsController)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
+    
     //MARK:-  Data fetching
     var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "FetchinUser"
-        hud.show(in: view)
-        // pagination on 2 user on time iinstead of all users
-        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
-//            .whereField("age", isLessThan: 28).whereField("age", isGreaterThan: 19)
+        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, err) in
-            hud.dismiss()
+            self.hud.dismiss()
             if let err = err {
-                print("Failed to Fetch users:", err)
+                print("Failed to fetch users:", err)
                 return
             }
+            
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
@@ -77,18 +119,15 @@ class HomeController: UIViewController {
                 self.lastFetchedUser = user
                 self.setupCardFromUser(user: user)
             })
-//            self.setupFirestoreUserCards()
         }
     }
 
-    fileprivate func setupCardFromUser(user: User){
-        cardViewModels.forEach { (cvm) in
-            let cardView = CardView(frame: .zero)
-            cardView.cardViewModel = user.toCardViewModel()
-            cardsDeckView.addSubview(cardView)
-            cardsDeckView.sendSubviewToBack(cardView)
-            cardView.fillSuperview()
-        }
+    fileprivate func setupCardFromUser(user: User) {
+        let cardView = CardView(frame: .zero)
+        cardView.cardViewModel = user.toCardViewModel()
+        cardsDeckView.addSubview(cardView)
+        cardsDeckView.sendSubviewToBack(cardView)
+        cardView.fillSuperview()
     }
     
     fileprivate func setupFirestoreUserCards(){

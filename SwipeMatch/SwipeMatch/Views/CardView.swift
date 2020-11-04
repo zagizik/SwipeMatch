@@ -21,7 +21,7 @@ class CardView: UIView {
             }
             
             informationLabel.attributedText = cardViewModel.attributedString
-            informationLabel.textAlignment = cardViewModel.textAligment
+            informationLabel.textAlignment = cardViewModel.textAlignment
             
             (0..<cardViewModel.imageNames.count).forEach { (_) in
                 let barView = UIView()
@@ -44,10 +44,6 @@ class CardView: UIView {
             self?.barsStackView.arrangedSubviews[indx].backgroundColor = .white
         }
     }
-    
-    
-    //Configurations
-    let threshold: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,6 +95,8 @@ class CardView: UIView {
         self.transform = rotationTransformation.translatedBy(x: translation.x, y: translation.y)
     }
     
+    fileprivate let threshold: CGFloat = 100
+    
     fileprivate func handleEndedCase(_ gesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
@@ -124,6 +122,7 @@ class CardView: UIView {
     
     fileprivate func setupLayout() {
         layer.cornerRadius = 10
+        backgroundColor = .darkGray
         clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
