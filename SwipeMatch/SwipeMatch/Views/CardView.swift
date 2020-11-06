@@ -8,7 +8,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTappedMoreInfo()
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "photo_placeholder"))
     fileprivate let gradientLayer = CAGradientLayer()
@@ -95,6 +101,10 @@ class CardView: UIView {
         self.transform = rotationTransformation.translatedBy(x: translation.x, y: translation.y)
     }
     
+    @objc fileprivate func handleMoreInfo() {
+        delegate?.didTappedMoreInfo()
+    }
+    
     fileprivate let threshold: CGFloat = 100
     
     fileprivate func handleEndedCase(_ gesture: UIPanGestureRecognizer) {
@@ -133,6 +143,8 @@ class CardView: UIView {
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 33, right: 22), size: .init(width: 44, height: 44))
     }
     
     fileprivate func setupGradientLayer() {
@@ -144,6 +156,13 @@ class CardView: UIView {
     override func layoutSubviews() {
         gradientLayer.frame = self.frame
     }
+    
+    fileprivate let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "33").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
     
     fileprivate let barsStackView = UIStackView()
     
