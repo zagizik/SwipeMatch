@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1144DDC7254B33F700E34515 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1144DDC6254B33F700E34515 /* Bindable.swift */; };
 		114A2B95254EF3960018405B /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A2B94254EF3960018405B /* SettingsController.swift */; };
+		114C79F32558452800A8ADEE /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C79F22558452800A8ADEE /* SwipingPhotosController.swift */; };
 		1153599F25459F880075EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153599E25459F880075EB62 /* AppDelegate.swift */; };
 		115359A325459F880075EB62 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359A225459F880075EB62 /* HomeController.swift */; };
 		115359A625459F880075EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115359A425459F880075EB62 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		1144DDC6254B33F700E34515 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		114A2B94254EF3960018405B /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		114C79F22558452800A8ADEE /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		1153599B25459F880075EB62 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1153599E25459F880075EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		115359A225459F880075EB62 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				115359A225459F880075EB62 /* HomeController.swift */,
 				114A2B94254EF3960018405B /* SettingsController.swift */,
 				117D4C422555B78E00DAE847 /* UserDetailsController.swift */,
+				114C79F22558452800A8ADEE /* SwipingPhotosController.swift */,
 				1144DDC6254B33F700E34515 /* Bindable.swift */,
 			);
 			path = Controllers;
@@ -305,6 +308,7 @@
 				1172549C255063C000B3A49D /* AgeRangeCell.swift in Sources */,
 				11552AD725474CB3001916DD /* CardViewModel.swift in Sources */,
 				114A2B95254EF3960018405B /* SettingsController.swift in Sources */,
+				114C79F32558452800A8ADEE /* SwipingPhotosController.swift in Sources */,
 				115359A325459F880075EB62 /* HomeController.swift in Sources */,
 				11552AD025473F4A001916DD /* User.swift in Sources */,
 				1144DDC7254B33F700E34515 /* Bindable.swift in Sources */,
