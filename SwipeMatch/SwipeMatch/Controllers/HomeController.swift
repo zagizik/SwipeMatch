@@ -53,9 +53,11 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         fetchCurrentUser()
     }
     
-    func didTappedMoreInfo() {
+    func didTappedMoreInfo(_ cardViewModel: CardViewModel) {
         let userDetailsController = UserDetailsController()
+        print("homecontroller:", cardViewModel.attributedString)
         userDetailsController.modalPresentationStyle = .fullScreen
+        userDetailsController.cardViewModel = cardViewModel
         present(userDetailsController, animated: true, completion: nil)
     }
     

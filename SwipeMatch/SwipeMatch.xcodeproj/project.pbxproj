@@ -157,8 +157,8 @@
 				119FBFB02552A106008E6A07 /* LoginController.swift */,
 				115359A225459F880075EB62 /* HomeController.swift */,
 				114A2B94254EF3960018405B /* SettingsController.swift */,
-				1144DDC6254B33F700E34515 /* Bindable.swift */,
 				117D4C422555B78E00DAE847 /* UserDetailsController.swift */,
+				1144DDC6254B33F700E34515 /* Bindable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
