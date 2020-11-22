@@ -34,7 +34,7 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
 //        iv.clipsToBounds = true
 //        return iv
 //    }()
-    let swipingPhotosController = SwipingPhotosController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    let swipingPhotosController = SwipingPhotosController()
     
     let infoLabel: UILabel = {
        let label = UILabel()

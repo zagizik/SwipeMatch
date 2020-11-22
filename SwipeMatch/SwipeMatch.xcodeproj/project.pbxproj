@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110333F22567C75300F10EE6 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110333F12567C75300F10EE6 /* PhotoController.swift */; };
 		1144DDC7254B33F700E34515 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1144DDC6254B33F700E34515 /* Bindable.swift */; };
 		114A2B95254EF3960018405B /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A2B94254EF3960018405B /* SettingsController.swift */; };
 		114C79F32558452800A8ADEE /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C79F22558452800A8ADEE /* SwipingPhotosController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110333F12567C75300F10EE6 /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		1144DDC6254B33F700E34515 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		114A2B94254EF3960018405B /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		114C79F22558452800A8ADEE /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				114A2B94254EF3960018405B /* SettingsController.swift */,
 				117D4C422555B78E00DAE847 /* UserDetailsController.swift */,
 				114C79F22558452800A8ADEE /* SwipingPhotosController.swift */,
+				110333F12567C75300F10EE6 /* PhotoController.swift */,
 				1144DDC6254B33F700E34515 /* Bindable.swift */,
 			);
 			path = Controllers;
@@ -303,6 +306,7 @@
 				117D4C432555B78E00DAE847 /* UserDetailsController.swift in Sources */,
 				115359BD2545AB8E0075EB62 /* Extensions+UIView.swift in Sources */,
 				115359C32545ADD90075EB62 /* HomeBottomControlsStackView.swift in Sources */,
+				110333F22567C75300F10EE6 /* PhotoController.swift in Sources */,
 				11552ADB2547556F001916DD /* Advertiser.swift in Sources */,
 				115359C82545B2620075EB62 /* TopNavigationStackView.swift in Sources */,
 				1172549C255063C000B3A49D /* AgeRangeCell.swift in Sources */,
