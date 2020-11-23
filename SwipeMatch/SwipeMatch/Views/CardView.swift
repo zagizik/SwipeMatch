@@ -113,23 +113,36 @@ class CardView: UIView {
     fileprivate func handleEndedCase(_ gesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
-        
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseOut) {
-            
-            if shouldDismissCard {
-              //  self.frame = CGRect(x: 1000 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
-                let offScreenTransorm = self.transform.translatedBy(x: 700 * translationDirection, y: 0)
-                self.transform = offScreenTransorm
+        // hack solution you need to crate and use functions in protocols! view shouldn't do anything but UI! 
+        if shouldDismissCard {
+            guard let homeController = self.delegate as? HomeController else { return }
+            if translationDirection == 1 {
+                homeController.handleLike()
             } else {
+                homeController.handleDislike()
+            }
+        } else {
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
                 self.transform = .identity
             }
-        } completion: { (_) in
-            self.transform = .identity
-            if shouldDismissCard {
-                self.removeFromSuperview()
-                self.delegate?.didRemoveCard(cardView: self)
-            }
         }
+        
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+//
+//            if shouldDismissCard {
+//              //  self.frame = CGRect(x: 1000 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
+//                let offScreenTransorm = self.transform.translatedBy(x: 700 * translationDirection, y: 0)
+//                self.transform = offScreenTransorm
+//            } else {
+//                self.transform = .identity
+//            }
+//        } completion: { (_) in
+//            self.transform = .identity
+//            if shouldDismissCard {
+//                self.removeFromSuperview()
+//                self.delegate?.didRemoveCard(cardView: self)
+//            }
+//        }
     }
 
     //MARK: - Layout Setup

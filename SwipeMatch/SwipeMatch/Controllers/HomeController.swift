@@ -72,20 +72,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         self.topCardView?.removeFromSuperview()
         self.topCardView = self.topCardView?.nextCardView
     }
-    
-    fileprivate func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
-            if let err = err {
-                print("Failed to fetch user:", err)
-                return
-            }
-        
-        guard let  dicionary = snapshot?.data() else { return }
-        self.user = User(dictionary: dicionary)
-            self.fetchUsersFromFirestore()
-        }
-    }
+
     
     // MARK:- UI set up
 
@@ -142,12 +129,15 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     }
     
     @objc fileprivate func handleRefresh() {
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
         fetchUsersFromFirestore()
     }
     
     
-    @objc fileprivate func handleDislike() {
+    @objc func handleDislike() {
         print("Dislike Tapped")
+        saveSwipeToFirestore(didLike: 0)
+        
         performSwipeAnimation(translation: -800, angle: -15)
 
     }
@@ -156,8 +146,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         print("SuperLike Tapped")
     }
     
-    @objc fileprivate func handleLike() {
+    @objc func handleLike() {
         print("Like Tapped")
+        saveSwipeToFirestore(didLike: 1)
         performSwipeAnimation(translation: 800, angle: 15)
     }
     
@@ -187,7 +178,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
-                if user.uid != Auth.auth().currentUser?.uid {
+                let hasNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
+//                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+                let hasNotSwipedBefore = true
+                if  hasNotCurrentUser && hasNotSwipedBefore {
                     let cardView = self.setupCardFromUser(user: user)
                     
                     previousCardView?.nextCardView = cardView
@@ -219,5 +213,95 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             cardView.fillSuperview()
         }
     }
+    
+    fileprivate func saveSwipeToFirestore(didLike: Int) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let cardUID = topCardView?.cardViewModel.uid else { return }
+        let documentData = [cardUID: didLike]
+        
+        Firestore.firestore().collection("swipes").document(uid).getDocument { ( snapshot, err) in
+            if let err = err {
+                print("Failed to fetch swipe doc", err)
+                return
+            }
+            if didLike == 1 {
+                self.checkIfMatchExist(cardUID: cardUID)
+            }
+            if snapshot?.exists == true {
+                Firestore.firestore().collection("swipes").document(uid).updateData(documentData) { (err) in
+                    if let err = err {
+                        print("Failed to update swipe data", err)
+                        return
+                    }
+                    print("Updated swipe data succesfully")
+                }
+            } else {
+                Firestore.firestore().collection("swipes").document(uid).setData(documentData) { (err) in
+                    if let err = err {
+                        print("Failed to save swipe data", err)
+                        return
+                    }
+                    print("Saved swipe data succesfully")
+                }
+            }
+        }
+    }
+    
+    fileprivate func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        cardsDeckView.subviews.forEach ({ $0.removeFromSuperview() })
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch user:", err)
+                return
+            }
+        
+        guard let  dicionary = snapshot?.data() else { return }
+        self.user = User(dictionary: dicionary)
+            self.fetchSwipes()
+//            self.fetchUsersFromFirestore()
+        }
+    }
+    
+    var swipes = [String: Int]()
+    
+    fileprivate func fetchSwipes() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("swipes").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("failed to fetch swipes info for currently logged in user:",err)
+                return
+            }
+            
+            print("swipes:", snapshot?.data() ?? "")
+            guard let data = snapshot?.data() as? [String : Int] else { return }
+            self.swipes = data
+            self.fetchUsersFromFirestore()
+        }
+    }
+    
+    fileprivate func checkIfMatchExist(cardUID: String) {
+        
+        Firestore.firestore().collection("swipes").document(cardUID).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch docement from firestore", err)
+                return
+            }
+            
+            guard let data = snapshot?.data() else { return }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            let hasMatched = data[uid] as? Int == 1
+            if hasMatched {
+                self.presentMatchView(cardUID: cardUID)
+            }
+        }
+    }
+    
+    fileprivate func presentMatchView(cardUID: String) {
+        let matchView = MatchView()
+        view.addSubview(matchView)
+        matchView.fillSuperview()
+    }
+
 }
 
