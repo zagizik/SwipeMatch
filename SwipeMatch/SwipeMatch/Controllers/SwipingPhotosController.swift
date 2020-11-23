@@ -95,11 +95,12 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
                 let nextController = controllers[nextIndex]
                 setViewControllers([nextController], direction: .forward, animated: false)
                 barsStackView.arrangedSubviews[nextIndex].backgroundColor = .white
-            }
+            } else {
             let prevIndex = max(0, index - 1)
             let prevController = controllers[prevIndex]
             setViewControllers([prevController], direction: .forward, animated: false)
             barsStackView.arrangedSubviews[prevIndex].backgroundColor = .white
+            }
         }
     }
     

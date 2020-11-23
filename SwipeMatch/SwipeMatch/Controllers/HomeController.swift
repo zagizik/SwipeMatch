@@ -34,7 +34,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         
         setupLayout()
         setupFirestoreUserCards()
-        fetchUsersFromFirestore()
+//        fetchUsersFromFirestore()
         fetchCurrentUser()
     }
     
