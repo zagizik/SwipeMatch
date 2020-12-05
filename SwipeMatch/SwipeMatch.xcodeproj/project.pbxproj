@@ -14,6 +14,8 @@
 		1144DDC7254B33F700E34515 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1144DDC6254B33F700E34515 /* Bindable.swift */; };
 		114A2B95254EF3960018405B /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A2B94254EF3960018405B /* SettingsController.swift */; };
 		114C79F32558452800A8ADEE /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C79F22558452800A8ADEE /* SwipingPhotosController.swift */; };
+		114E91C125794B6300B7E7D9 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E91C025794B6300B7E7D9 /* MessageController.swift */; };
+		114E91C5257C002D00B7E7D9 /* MatchesNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E91C4257C002D00B7E7D9 /* MatchesNavBar.swift */; };
 		1153599F25459F880075EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1153599E25459F880075EB62 /* AppDelegate.swift */; };
 		115359A325459F880075EB62 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115359A225459F880075EB62 /* HomeController.swift */; };
 		115359A625459F880075EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115359A425459F880075EB62 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		1144DDC6254B33F700E34515 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		114A2B94254EF3960018405B /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		114C79F22558452800A8ADEE /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
+		114E91C025794B6300B7E7D9 /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageController.swift; path = SwipeMatch/Views/MessageController.swift; sourceTree = SOURCE_ROOT; };
+		114E91C4257C002D00B7E7D9 /* MatchesNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesNavBar.swift; sourceTree = "<group>"; };
 		1153599B25459F880075EB62 /* SwipeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1153599E25459F880075EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		115359A225459F880075EB62 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				1126B08E256AD12000164AAB /* MatchView.swift */,
 				113CEDFB256BF1F20026AC45 /* SendMessageButton.swift */,
 				113CEDFE256BF21C0026AC45 /* KeepSwipingButton.swift */,
+				114E91C4257C002D00B7E7D9 /* MatchesNavBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				119FBFB02552A106008E6A07 /* LoginController.swift */,
 				115359A225459F880075EB62 /* HomeController.swift */,
 				114A2B94254EF3960018405B /* SettingsController.swift */,
+				114E91C025794B6300B7E7D9 /* MessageController.swift */,
 				117D4C422555B78E00DAE847 /* UserDetailsController.swift */,
 				114C79F22558452800A8ADEE /* SwipingPhotosController.swift */,
 				110333F12567C75300F10EE6 /* PhotoController.swift */,
@@ -329,6 +335,7 @@
 				1144DDC7254B33F700E34515 /* Bindable.swift in Sources */,
 				113CEDFC256BF1F20026AC45 /* SendMessageButton.swift in Sources */,
 				119FBFAE2552A0DF008E6A07 /* LoginViewModel.swift in Sources */,
+				114E91C125794B6300B7E7D9 /* MessageController.swift in Sources */,
 				11A7AF252548B860007C6D2C /* CustomTextField.swift in Sources */,
 				11DB21C32549F21B00ADEF3E /* RegistrationViewModel.swift in Sources */,
 				119FBFB12552A106008E6A07 /* LoginController.swift in Sources */,
@@ -336,6 +343,7 @@
 				115359CC2545BCCF0075EB62 /* CardView.swift in Sources */,
 				11725498255026D000B3A49D /* SettingsCell.swift in Sources */,
 				11A7AF212548AC18007C6D2C /* RegistrationController.swift in Sources */,
+				114E91C5257C002D00B7E7D9 /* MatchesNavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -467,7 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

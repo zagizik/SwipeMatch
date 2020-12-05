@@ -41,6 +41,8 @@ struct User: ProducesCardViewModel {
         
         var imageUrls = [String]() // empty string array
         if let url = imageUrl1 { imageUrls.append(url) }
+//        if imageUrl2 != "" && imageUrl2 != nil { imageUrls.append(imageUrl2!) }
+//        if imageUrl3 != "" && imageUrl3 != nil { imageUrls.append(imageUrl3!) }
         if let url = imageUrl2 { imageUrls.append(url) }
         if let url = imageUrl3 { imageUrls.append(url) }
         

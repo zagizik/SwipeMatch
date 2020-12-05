@@ -127,22 +127,22 @@ class RegistrationController: UIViewController {
     
 // MARK:- LAYOUT
     
-    lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
-    lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if self.traitCollection.verticalSizeClass == .compact {
-            overallStackView.axis = .horizontal
-            verticalStackView.distribution = .fillEqually
-            selectPhotoButtonHeightAnchor.isActive = false
-            selectPhotoButtonWidthAnchor.isActive = true
-        } else {
-            overallStackView.axis = .vertical
-            verticalStackView.distribution = .fill
-            selectPhotoButtonWidthAnchor.isActive = false
-            selectPhotoButtonHeightAnchor.isActive = true
-        }
-    }
+//    lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
+//    lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
+//    
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        if self.traitCollection.verticalSizeClass == .compact {
+//            overallStackView.axis = .horizontal
+//            verticalStackView.distribution = .fillEqually
+//            selectPhotoButtonHeightAnchor.isActive = true
+//            selectPhotoButtonWidthAnchor.isActive = true
+//        } else {
+//            overallStackView.axis = .vertical
+//            verticalStackView.distribution = .fill
+//            selectPhotoButtonWidthAnchor.isActive = false
+//            selectPhotoButtonHeightAnchor.isActive = true
+//        }
+//    }
     
     let gradientLayer = CAGradientLayer()
     
@@ -202,6 +202,8 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
+        button.widthAnchor.constraint(equalToConstant: 275).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         return button
     }()
     

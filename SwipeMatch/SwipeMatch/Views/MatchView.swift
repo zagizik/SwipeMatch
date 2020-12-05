@@ -11,7 +11,12 @@ import Firebase
 
 class MatchView: UIView {
     
-    var currentUser: User!
+    var currentUser: User! {
+        didSet{
+//            guard let url = URL(string: currentUser.imageUrl1 ?? "") else { return }
+//            currentUserImageView.sd_setImage(with: url)
+        }
+    }
     
     // you're almost always guaranteed to have this variable set up
     var cardUID: String! {
@@ -25,14 +30,14 @@ class MatchView: UIView {
                     print("Failed to fetch card user:", err)
                     return
                 }
-                
                 guard let dictionary = snapshot?.data() else { return }
                 let user = User(dictionary: dictionary)
                 guard let url = URL(string: user.imageUrl1 ?? "") else { return }
+     
                 self.cardUserImageView.sd_setImage(with: url)
                 
                 guard let currentUserImageUrl = URL(string: self.currentUser.imageUrl1 ?? "") else { return }
-                
+                print(currentUserImageUrl)
                 self.currentUserImageView.sd_setImage(with: currentUserImageUrl, completed: { (_, _, _, _) in
                     self.setupAnimations()
                 })
@@ -66,6 +71,7 @@ class MatchView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.alpha = 0
         return imageView
     }()
     
@@ -75,6 +81,7 @@ class MatchView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.alpha = 0
         return imageView
     }()
     
@@ -96,7 +103,7 @@ class MatchView: UIView {
         super.init(frame: frame)
         setupBlurView()
         setupLayout()
-        self.setupAnimations()
+//        self.setupAnimations()
     }
     
     lazy var views = [
@@ -112,7 +119,7 @@ class MatchView: UIView {
         let imageSize: CGFloat = 140
         views.forEach { (v) in
             addSubview(v)
-            v.alpha = 0.5
+            v.alpha = 0
         }
 
         itsAMatchImageView.anchor(top: nil, leading: nil, bottom: descriptionLabel.topAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 16, right: 0), size: .init(width: 300, height: 80))

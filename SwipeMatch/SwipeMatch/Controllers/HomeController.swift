@@ -23,6 +23,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         topStackView.messageButton.addTarget(self, action: #selector(handleMassege), for: .touchUpInside)
         
@@ -44,9 +46,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             let registrationController = RegistrationController()
             let navController = UINavigationController(rootViewController: registrationController)
             if #available(iOS 13.0, *) {
-                navController.isModalInPresentation = true
+                navController.modalPresentationStyle = .fullScreen
             }
-
             present(navController, animated: true)
         }
     }
@@ -57,7 +58,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     
     func didSaveSettings() {
         print("notified from dissmisal home controller")
-        fetchCurrentUser()
+        self.fetchCurrentUser()
     }
     
     func didTappedMoreInfo(_ cardViewModel: CardViewModel) {
@@ -116,8 +117,10 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     // MARK:- buttons targets
     
     @objc fileprivate func handleMassege() {
-        let messageController = RegistrationController()
-        present(messageController, animated: true)
+        let vc = MessageController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func handleSettings() {
@@ -299,6 +302,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     
     fileprivate func presentMatchView(cardUID: String) {
         let matchView = MatchView()
+        matchView.cardUID = cardUID
+        matchView.currentUser = self.user
         view.addSubview(matchView)
         matchView.fillSuperview()
     }

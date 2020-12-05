@@ -45,7 +45,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         let ref = Storage.storage().reference(withPath: "/images/\(filename)")
         guard let uploadData = selectedImage?.jpegData(compressionQuality: 0.75) else { return }
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "uploadind image"
+        hud.textLabel.text = "uploading image"
         hud.show(in: view)
         ref.putData(uploadData, metadata: nil) { (nil, err) in
             hud.dismiss()
@@ -279,18 +279,19 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     @objc fileprivate func hansleSave() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("users").document()
-        let docData: [String: Any] = [
+        var docData: [String: Any] = [
             "uid": uid,
             "fullname": user?.name ?? "",
             "imageUrl1": user?.imageUrl1 ?? "",
-            "imageUrl2": user?.imageUrl2 ?? "",
-            "imageUrl3": user?.imageUrl3 ?? "",
+//            "imageUrl2": user?.imageUrl2 ?? "",
+//            "imageUrl3": user?.imageUrl3 ?? "",
             "age": user?.age ?? -1,
             "profession": user?.profession ?? "",
             "minSeekingAge": user?.minSeekingAge ?? -1,
             "maxSeekingAge": user?.maxSeekingAge ?? -1
-            
         ]
+        if let usr2 = user?.imageUrl2 { docData["imageUrl2"] = usr2 }
+        if let usr3 = user?.imageUrl3 { docData["imageUrl3"] = usr3 }
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Saving settings"
         hud.show(in: view)
@@ -305,7 +306,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         self.dismiss(animated: true, completion: {
             print("Dismissal complete")
             self.delegate?.didSaveSettings()
-//            homeController.fetchCurrentUser() // I want to refetch my cards inside of homeController somehow
         })
     }
     
