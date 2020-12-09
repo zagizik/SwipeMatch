@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class HomeController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate, CardViewDelegate {
+class HomeController: UIViewController, LoginControllerDelegate, CardViewDelegate  {
     
 
     let topStackView = TopNavigationStackView()
@@ -56,13 +56,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         fetchCurrentUser()
     }
     
-    func didSaveSettings() {
-        print("notified from dissmisal home controller")
-        self.fetchCurrentUser()
-    }
-    
     func didTappedMoreInfo(_ cardViewModel: CardViewModel) {
         let userDetailsController = UserDetailsController()
+        userDetailsController.delegate = self
         print("homecontroller:", cardViewModel.attributedString)
         userDetailsController.modalPresentationStyle = .fullScreen
         userDetailsController.cardViewModel = cardViewModel
@@ -73,6 +69,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         self.topCardView?.removeFromSuperview()
         self.topCardView = self.topCardView?.nextCardView
     }
+    
+    
 
     
     // MARK:- UI set up
@@ -145,7 +143,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
 
     }
     
-    @objc fileprivate func handleSuperLike() {
+    @objc func handleSuperLike() {
         print("SuperLike Tapped")
     }
     
@@ -308,5 +306,33 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
         matchView.fillSuperview()
     }
 
+}
+
+extension HomeController: UserDetailsControllerDelegate {
+    
+
+    
+    func didTapDislike() {
+        handleDislike()
+    }
+    
+    func didTapLike() {
+        handleLike()
+    }
+    
+    func didTapSuperlike() {
+        print("delegate")
+        self.handleSuperLike()
+    }
+}
+
+extension HomeController: SettingsControllerDelegate {
+    func didSaveSettings() {
+        print("notified from dissmisal home controller")
+//        self.fetchCurrentUser()
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
+        fetchUsersFromFirestore()
+
+    }
 }
 

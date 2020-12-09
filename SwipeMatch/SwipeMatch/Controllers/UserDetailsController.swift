@@ -8,6 +8,12 @@
 import UIKit
 import SDWebImage
 
+protocol UserDetailsControllerDelegate: class {
+    func didTapDislike()
+    func didTapLike()
+    func didTapSuperlike()
+}
+
 class UserDetailsController: UIViewController, UIScrollViewDelegate {
     
     var cardViewModel: CardViewModel! {
@@ -19,6 +25,10 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
 //            imageView.sd_setImage(with: url)
         }
     }
+    
+    var delegate: UserDetailsControllerDelegate?
+    
+//    let homeController = HomeController()
     
     lazy var scrollview: UIScrollView = {
         let sv = UIScrollView()
@@ -51,11 +61,29 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
     }()
     
     lazy var  dislikeButton = self.createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDislike))
-    lazy var  superLikeButton = self.createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleDislike))
-    lazy var  likeButton = self.createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handleDislike))
+    lazy var  superLikeButton = self.createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperLike))
+    lazy var  likeButton = self.createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handleLike))
     
     @objc fileprivate func handleDislike() {
         print("dont like")
+        dismiss(animated: true) {
+            self.delegate?.didTapDislike()
+        }
+    }
+    
+    @objc fileprivate func handleSuperLike() {
+        print("very like")
+        self.dismiss(animated: true, completion: {
+            print("Dismissal complete")
+            self.delegate?.didTapSuperlike()
+        })
+    }
+    
+    @objc fileprivate func handleLike() {
+        print("kinda like")
+        dismiss(animated: true) {
+            self.delegate?.didTapLike()
+        }
     }
     
     fileprivate func createButton (image: UIImage, selector: Selector) -> UIButton {
@@ -127,5 +155,4 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
     @objc fileprivate func handleTapDissmis() {
         self.dismiss(animated: true)
     }
-    
 }

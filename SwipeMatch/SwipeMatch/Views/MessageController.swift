@@ -9,7 +9,7 @@ import UIKit
 
 class MessageController: UICollectionViewController {
     
-    let customNavBar = MatchesNavBar()
+    let customNavBar = MatchesMassagesNavBar()
 
 
 

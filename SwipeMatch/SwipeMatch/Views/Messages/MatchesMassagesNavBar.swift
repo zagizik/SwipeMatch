@@ -7,14 +7,13 @@
 
 import UIKit
 
-class MatchesNavBar: UIView {
+class MatchesMassagesNavBar: UIView {
     
     override init(frame: CGRect){
         super.init(frame: frame)
         
         backgroundColor = .white
         shadowSetup()
-        
         addSubview(iconImageView)
         addSubview(messageLabel)
         addSubview(feedLabel)
@@ -52,8 +51,8 @@ class MatchesNavBar: UIView {
         let iv = UIImageView(image: #imageLiteral(resourceName: "top_right_messages").withRenderingMode(.alwaysTemplate))
         iv.tintColor = #colorLiteral(red: 0.979567945, green: 0.4075169265, blue: 0.4402788579, alpha: 1)
         iv.contentMode = .center
-//        iv.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        iv.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        iv.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        iv.widthAnchor.constraint(equalToConstant: 40).isActive = true
         return iv
     }()
     let messageLabel: UILabel = {
